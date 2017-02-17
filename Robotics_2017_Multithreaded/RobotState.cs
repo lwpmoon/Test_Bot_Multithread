@@ -9,9 +9,9 @@ namespace Robotics_2017.Work_Items {
         private readonly PWM _leftPWM = new PWM(PWMChannels.PWM_PIN_D3, Frequency, 1, false);
         private readonly OutputPort _rightDir = new OutputPort(Pins.GPIO_PIN_D13, false);
         private readonly PWM _rightPWM = new PWM(PWMChannels.PWM_PIN_D11, Frequency, 1, false);
-        public void Forward(int s, bool r)
+        public void Forward(int s)
         {
-            if (r == true && (s <= 255))// || (s > 0))
+            if (RobotState.CheckReady() && (s <= 255))// || (s > 0))
             {
 
 
@@ -27,9 +27,9 @@ namespace Robotics_2017.Work_Items {
             else Halt();
         }
 
-        public void Backward(int s, bool r)
+        public void Backward(int s)
         {
-            if (r == true && (s <= 255))
+            if (s <= 255 && RobotState.CheckReady())
             {
                 Halt();
 
@@ -45,9 +45,9 @@ namespace Robotics_2017.Work_Items {
             else Halt();
         }
 
-        public void Right(int s, bool readyy)
+        public void Right(int s)
         {
-            if (readyy == true)
+            if (RobotState.CheckReady())
             {
                 _leftDir.Write(true);
                 _rightDir.Write(false);
@@ -73,6 +73,9 @@ namespace Robotics_2017.Work_Items {
         public static int LastPingDistance { get; private set; }
         public static double IRDistance { get; private set; }
         public static double LastIRDistance { get; private set; }
+        private static readonly AnalogInput robotActivePin = new AnalogInput(AnalogChannels.ANALOG_PIN_A0 );
+
+
         static RobotState() {
             PingDistance = int.MaxValue;
             LastPingDistance = int.MaxValue;
@@ -88,6 +91,9 @@ namespace Robotics_2017.Work_Items {
         public static void SetIrDistance(double distance) {
             LastIRDistance = IRDistance;
             IRDistance = distance;
+        }
+        public static bool CheckReady() {
+            return robotActivePin.Read() >= 0.9;
         }
     }
 }

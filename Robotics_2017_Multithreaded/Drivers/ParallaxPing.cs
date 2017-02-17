@@ -5,6 +5,12 @@ using Microsoft.SPOT.Hardware;
 using SecretLabs.NETMF.Hardware.Netduino;
 
 namespace Robotics_2017.Drivers {
+
+    public class RobotMotors {
+        
+    }
+
+
     public class ParallaxPing {
         public delegate void RangeTakenDelegate(object sender, PingEventArgs e);
 
