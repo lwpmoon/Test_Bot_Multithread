@@ -32,8 +32,15 @@
   </PropertyGroup>
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
+    <Compile Include="Drivers\IrDistanceSensor.cs" />
+    <Compile Include="Drivers\ParallaxPing.cs" />
+    <Compile Include="Drivers\ParallaxPingSimple.cs" />
+    <Compile Include="Drivers\PingEventArgs.cs" />
     <Compile Include="Utility\Tools.cs" />
     <Compile Include="Flight Computer\Clock.cs" />
+    <Compile Include="Work Items\IRDistanceUpdater.cs" />
+    <Compile Include="Work Items\PingUpdater.cs" />
+    <Compile Include="RobotState.cs" />
     <Compile Include="Work Items\WorkItem.cs" />
     <Compile Include="Drivers\I2CBus.cs" />
     <Compile Include="Work Items\MemoryMonitor.cs" />

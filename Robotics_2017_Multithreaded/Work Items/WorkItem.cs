@@ -27,6 +27,17 @@ namespace Robotics_2017.Work_Items
 
             if (Pauseable) MemoryMonitor.Instance.RegisterPauseableAction(this);
         }
+        public WorkItem(ThreadStart action, bool loggable, bool persistent = false, bool pauseable = false)
+        {
+            Action = action;
+            Loggable = loggable;
+            _repeatable = persistent;
+            Persistent = persistent;
+            Pauseable = pauseable;
+            PacketData = null;
+
+            if (Pauseable) MemoryMonitor.Instance.RegisterPauseableAction(this);
+        }
 
         public void Start()
         {
