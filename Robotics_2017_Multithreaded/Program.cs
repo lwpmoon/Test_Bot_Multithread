@@ -44,22 +44,29 @@ namespace Robotics_2017 {
             var testIR = new IRDistanceUpdater(AnalogChannels.ANALOG_PIN_A1,25,100);
             testIR.Start();
 
-            while (true) {
+            
+
+            // Start sensor actions here.
+            Debug.Print("Flight computer boot successful.");
+
+
+            while (true)
+            {
                 Debug.Print("IR: " + RobotState.IRDistance);
                 Debug.Print("\nPing: " + RobotState.PingDistance);
                 Thread.Sleep(1000);
                 var oldSenV = RobotState.LastIRDistance;
                 var currentSenV = RobotState.IRDistance;
 
-                if (RobotState.CheckReady()) GreenLED.Write(true);
-                else GreenLED.Write(false);
+                GreenLED.Write(RobotState.CheckReady());
 
-                
+                BlueLED.Write(currentSenV >= 1000);
+                YellowLED.Write(currentSenV >= 2000);
+                if (currentSenV >= 1000) BlueLED.Write(true);
 
-                if(currentSenV >= 1000)
-
-                if (Math.Abs(oldSenV - currentSenV) > .01) {
-                    Debug.Print("SensorValue: "+ currentSenV);
+                if (Math.Abs(oldSenV - currentSenV) > .01)
+                {
+                    Debug.Print("SensorValue: " + currentSenV);
 
                     RedLED.Write(false);
                     YellowLED.Write(false);
@@ -81,13 +88,10 @@ namespace Robotics_2017 {
                         Debug.Print("Too close...");
                         _motors.Halt();
                         _motors.Right(255);
-                            
+
                     }
                 }
             }
-
-            // Start sensor actions here.
-            Debug.Print("Flight computer boot successful.");
         }
         
     }
