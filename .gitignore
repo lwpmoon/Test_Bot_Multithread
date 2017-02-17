@@ -2,3 +2,6 @@ RockSatC-2016/obj/
 RockSatC-2016/bin/
 RockSatC-2016/OnBoardFlash.dat
 RockSatC-2016/OnBoardFlash.dat.smd
+Robotics_2017_Multithreaded/bin/
+Robotics_2017_Multithreaded/obj/
+*.suo
