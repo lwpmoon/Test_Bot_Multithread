@@ -11,7 +11,7 @@ namespace Robotics_2017.Work_Items {
         private readonly PWM _rightPWM = new PWM(PWMChannels.PWM_PIN_D11, Frequency, 1, false);
         public void Forward(int s)
         {
-            if (RobotState.CheckReady() && (s <= 255))// || (s > 0))
+            if (RobotState.IsEnabled() && (s <= 255))// || (s > 0))
             {
 
 
@@ -29,7 +29,7 @@ namespace Robotics_2017.Work_Items {
 
         public void Backward(int s)
         {
-            if (s <= 255 && RobotState.CheckReady())
+            if (s <= 255 && RobotState.IsEnabled())
             {
                 Halt();
 
@@ -47,7 +47,7 @@ namespace Robotics_2017.Work_Items {
 
         public void Right(int s)
         {
-            if (RobotState.CheckReady())
+            if (RobotState.IsEnabled())
             {
                 _leftDir.Write(true);
                 _rightDir.Write(false);
@@ -73,7 +73,10 @@ namespace Robotics_2017.Work_Items {
         public static int LastPingDistance { get; private set; }
         public static double IRDistance { get; private set; }
         public static double LastIRDistance { get; private set; }
-        private static readonly AnalogInput robotActivePin = new AnalogInput(AnalogChannels.ANALOG_PIN_A0 );
+        public static double LastcompassHeading { get; private set; }
+        public static double CompassHeading { get; private set; }
+
+        private static readonly AnalogInput enablePin = new AnalogInput(AnalogChannels.ANALOG_PIN_A0 );
 
 
         static RobotState() {
@@ -81,6 +84,8 @@ namespace Robotics_2017.Work_Items {
             LastPingDistance = int.MaxValue;
             IRDistance = int.MaxValue;
             LastIRDistance = int.MaxValue;
+            CompassHeading = int.MaxValue;
+            LastcompassHeading = int.MaxValue;
         }
 
         public static void SetPingDistance(int distance) {
@@ -92,8 +97,14 @@ namespace Robotics_2017.Work_Items {
             LastIRDistance = IRDistance;
             IRDistance = distance;
         }
-        public static bool CheckReady() {
-            return robotActivePin.Read() >= 0.9;
+
+        public static void SetHeading(double heading)
+        {
+            LastcompassHeading = CompassHeading;
+            CompassHeading = heading;
+        }
+        public static bool IsEnabled() {
+            return enablePin.Read() >= 0.9;
         }
     }
 }

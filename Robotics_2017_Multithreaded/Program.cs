@@ -44,6 +44,8 @@ namespace Robotics_2017 {
             var testIR = new IRDistanceUpdater(AnalogChannels.ANALOG_PIN_A1,25,100);
             testIR.Start();
 
+            var testCompass = new Compass();
+            
             
 
             // Start sensor actions here.
@@ -58,7 +60,7 @@ namespace Robotics_2017 {
                 var oldSenV = RobotState.LastIRDistance;
                 var currentSenV = RobotState.IRDistance;
 
-                GreenLED.Write(RobotState.CheckReady());
+                GreenLED.Write(RobotState.IsEnabled());
 
                 BlueLED.Write(currentSenV >= 1000);
                 YellowLED.Write(currentSenV >= 2000);
