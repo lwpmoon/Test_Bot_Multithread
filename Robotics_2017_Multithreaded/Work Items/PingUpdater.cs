@@ -1,7 +1,7 @@
 using Microsoft.SPOT.Hardware;
-using Robotics_2017.Drivers;
+using Test_Bot_Multithread.Drivers;
 
-namespace Robotics_2017.Work_Items {
+namespace Test_Bot_Multithread.Work_Items {
     public class PingUpdater {
 
         //minimum period of 1000ms between pulses

@@ -1,7 +1,7 @@
 using System.Threading;
-using Robotics_2017.Flight_Computer;
+using Test_Bot_Multithread.Flight_Computer;
 
-namespace Robotics_2017.Work_Items
+namespace Test_Bot_Multithread.Work_Items
 {
     public class WorkItem
     {

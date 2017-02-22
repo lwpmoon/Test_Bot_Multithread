@@ -1,4 +1,4 @@
-﻿namespace Robotics_2017.Drivers {
+﻿namespace Test_Bot_Multithread.Drivers {
     public class PingEventArgs {
         public PingEventArgs(int distance) {
             Distance = distance;

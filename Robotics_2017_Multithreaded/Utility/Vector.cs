@@ -1,4 +1,4 @@
-﻿namespace Robotics_2017.Utility {
+﻿namespace Test_Bot_Multithread.Utility {
     public struct Vector {
         public float X { get; set; } 
         public float Y { get; set; } 

@@ -1,7 +1,7 @@
 using System;
 using Microsoft.SPOT.Hardware;
 
-namespace Robotics_2017.Drivers
+namespace Test_Bot_Multithread.Drivers
 {
     public class I2CBus : IDisposable
     {
@@ -38,8 +38,8 @@ namespace Robotics_2017.Drivers
                 var transferred = _slaveDevice.Execute(writeXAction, transactionTimeout);
 
                 // make sure the data was sent.
-                if (transferred != writeBuffer.Length)
-                    throw new Exception("Could not write to device.");
+                //if (transferred != writeBuffer.Length)
+                    //throw new Exception("Could not write to device.");
             }
         }
 
@@ -57,8 +57,8 @@ namespace Robotics_2017.Drivers
                 var transferred = _slaveDevice.Execute(readXAction, transactionTimeout);
 
                 // make sure the data was received.
-                if (transferred != readBuffer.Length)
-                    throw new Exception("Could not read from device.");
+                //if (transferred != readBuffer.Length)
+                    //throw new Exception("Could not read from device.");
             }
         }
 
@@ -66,14 +66,32 @@ namespace Robotics_2017.Drivers
         public void ReadRegister(I2CDevice.Configuration config, byte register, byte[] readBuffer, int transactionTimeout)
         {
             byte[] registerBuffer = { register };
+            Write(config, new byte[] { 0x3D }, transactionTimeout);
             Write(config, registerBuffer, transactionTimeout);
             Read(config, readBuffer, transactionTimeout);
         }
 
-     
+
+        public void WriteRegister(I2CDevice.Configuration config, byte[] register, byte[] writeBuffer, int transactionTimeout)
+        {
+            byte[] registerBuffer =  register;
+            //Write(config, new byte[] { 0x3C, 0x00, 0x70 }, transactionTimeout);
+            //Write(config, writeBuffer, transactionTimeout);
+        }
+
+        public void WriteRegister(I2CDevice.Configuration config, byte[] everyThing, int transactionTimeout)
+        {
+            
+            //Write(config, new byte[] { 0x3C, 0x00, 0x70 }, transactionTimeout);
+            //Write(config, registerBuffer, transactionTimeout);
+            Write(config, everyThing, transactionTimeout);
+            //Write(config, valueBuffer, transactionTimeout);
+        }
+
         public void WriteRegister(I2CDevice.Configuration config, byte register, byte[] writeBuffer, int transactionTimeout)
         {
             byte[] registerBuffer = { register };
+            //Write(config,new byte[] {0x3C, 0x00, 0x70},transactionTimeout);
             Write(config, registerBuffer, transactionTimeout);
             Write(config, writeBuffer, transactionTimeout);
         }
@@ -81,6 +99,7 @@ namespace Robotics_2017.Drivers
         public void WriteRegister(I2CDevice.Configuration config, byte register, byte value, int transactionTimeout)
         {
             byte[] writeBuffer = { register, value };
+            Write(config, new byte[] { 0x3C }, transactionTimeout);
             Write(config, writeBuffer, transactionTimeout);
         }
 

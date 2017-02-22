@@ -1,6 +1,6 @@
 using System;
 
-namespace Robotics_2017.Flight_Computer
+namespace Test_Bot_Multithread.Flight_Computer
 {
     internal class Clock
     {

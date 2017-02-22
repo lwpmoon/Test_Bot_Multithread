@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Threading;
 using Microsoft.SPOT;
-using Robotics_2017.Work_Items;
+using Test_Bot_Multithread.Work_Items;
 
-namespace Robotics_2017.Flight_Computer {
+namespace Test_Bot_Multithread.Flight_Computer {
     public static class ThreadPool {
 
 

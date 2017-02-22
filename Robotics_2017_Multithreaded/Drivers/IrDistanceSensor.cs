@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.SPOT.Hardware;
 
-namespace Robotics_2017.Drivers {
+namespace Test_Bot_Multithread.Drivers {
     public class IrDistanceSensor
     {
         private AnalogInput _input;

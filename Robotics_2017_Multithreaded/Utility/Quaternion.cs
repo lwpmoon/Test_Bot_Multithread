@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Robotics_2017.Utility {
+namespace Test_Bot_Multithread.Utility {
     public class Quaternion {
         public double W { get; set; }
         public double X { get; set; }

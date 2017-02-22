@@ -2,7 +2,7 @@
 using Microsoft.SPOT.Hardware;
 using SecretLabs.NETMF.Hardware.Netduino;
 
-namespace Robotics_2017.Drivers {
+namespace Test_Bot_Multithread.Drivers {
     public class ParallaxPingSimple {
         public delegate void RangeTakenDelegate(object sender, PingEventArgs e);
 
